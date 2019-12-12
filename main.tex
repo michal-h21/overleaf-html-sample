@@ -1,10 +1,11 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
-\title{Create HTML output using Github Actions}
+\title{Create HTML output using GitHub Actions}
 \author{Michal Hoftich}
 \date{December 2019}
 \usepackage{hyperref}
+\usepackage{listings}
 \newcommand{\cmdname}[1]{\texttt{#1}}
 \newcommand\footurl[1]{\footnote{\url{#1}}}
 
@@ -14,11 +15,39 @@
 
 \section{Introduction}
 
-I've set up Docker image\footurl{https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general} for TeX4ht, \LaTeX\ to XML converter. Thanks to Github Actions, it is possible to use it for Overleaf document to HTML conversion.
+I've set up Docker image\footurl{https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general} for \TeX4ht, \LaTeX\ to XML converter. Thanks to GitHub 
+Actions\footurl{https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-github-actions}, it is possible to use it for Overleaf document to HTML conversion.
 
 \section{Setup}
 
-First step is to sync your Overleaf project with your Github account, following a guide at Overleaf\footurl{https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket\%3F}. 
+\subsection{On Overleaf}
+
+First step is to sync your Overleaf project with your GitHub account, following a guide at Overleaf\footurl{https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket\%3F}. Don't forget to run the \cmdname{Sync -> GitHub} command from Overleaf main menu every time you updated the document.
+
+\subsection{On GitHub}
+Next step is to configure actions in the Github project created for your document. Two steps are necessary -- first  one compiles the document to HTML using \TeX4ht, the second step publishes the generated HTML files on the Web using GitHub Pages\footurl{https://pages.github.com/}
+
+Select the \cmdname{Actions} tab and click the \cmdname{Set up a workflow yourself} button. It will open an editor with a YAML file for the Action workflow. Replace it with the following content:
+
+\begin{lstlisting}{yaml}
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run make4ht
+      uses: docker://michalh21/make4ht-docker:latest
+      env:
+        command: "make4ht -ua debug -d out main.tex"
+    - name: Publish the web pages
+      uses: peaceiris/actions-gh-pages@v2.5.0
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./out    
+\end{lstlisting}
 
 
 \end{document}
