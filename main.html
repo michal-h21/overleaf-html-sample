@@ -4,9 +4,9 @@
 <meta charset='utf-8' /> 
 <meta name='generator' content='TeX4ht (http://www.tug.org/tex4ht/)' /> 
 <meta name='viewport' content='width=device-width,initial-scale=1' /> 
-<link rel='stylesheet' type='text/css' href='main.css' /> 
+<link type='text/css' rel='stylesheet' href='main.css' /> 
 <meta name='src' content='main.tex' /> 
-<link rel='stylesheet' type='text/css' href='fixes.css' /> 
+<link type='text/css' rel='stylesheet' href='fixes.css' /> 
 </head><body>
    <div class='maketitle'>
                                                                   
@@ -21,9 +21,9 @@
 <div class='date'><span class='cmr-12'>December 2019</span></div>
    </div>
    <h3 class='sectionHead'><span class='titlemark'>1   </span> <a id='x1-10001'></a>Introduction</h3>
-<!-- l. 19 --><p class='noindent'>I’ve set up Docker image<span class='footnote-mark'><a href='#fn1x0' id='fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a id='x1-1001f1'></a>
+<!-- l. 19 --><p class='noindent'>I’ve set up Docker image<span class='footnote-mark'><a id='fn1x0-bk' href='#fn1x0'><sup class='textsuperscript'>1</sup></a></span><a id='x1-1001f1'></a>
 for <span class='TEX'>T<span class='E'>E</span>X</span>4ht, <span class='LATEX'>L<span class='A'>A</span><span class='TEX'>T<span class='E'>E</span>X</span></span> to XML converter. Thanks to GitHub
-Actions<span class='footnote-mark'><a href='#fn2x0' id='fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a id='x1-1002f2'></a>,
+Actions<span class='footnote-mark'><a id='fn2x0-bk' href='#fn2x0'><sup class='textsuperscript'>2</sup></a></span><a id='x1-1002f2'></a>,
 it is possible to use it for Overleaf document to HTML conversion.
 </p><!-- l. 22 --><p class='noindent'>
 </p>
@@ -32,53 +32,53 @@ it is possible to use it for Overleaf document to HTML conversion.
 </p>
    <h4 class='subsectionHead'><span class='titlemark'>2.1   </span> <a id='x1-30002.1'></a>On Overleaf</h4>
 <!-- l. 26 --><p class='noindent'>First step is to sync your Overleaf project with your GitHub account, following a guide at
-Overleaf<span class='footnote-mark'><a href='#fn3x0' id='fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a id='x1-3001f3'></a>.
+Overleaf<span class='footnote-mark'><a id='fn3x0-bk' href='#fn3x0'><sup class='textsuperscript'>3</sup></a></span><a id='x1-3001f3'></a>.
 Don’t forget to run the <span class='cmtt-10'>Sync -&gt; GitHub </span>command from Overleaf main menu every
 time you updated the document.
-</p><!-- l. 28 --><p class='noindent'>
+</p><!-- l. 31 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead'><span class='titlemark'>2.2   </span> <a id='x1-40002.2'></a>On GitHub</h4>
                                                                   
 
                                                                   
-<!-- l. 29 --><p class='noindent'>Next step is to configure actions in the Github project created for your document.
+<!-- l. 32 --><p class='noindent'>Next step is to configure actions in the Github project created for your document.
 Two steps are necessary – first one compiles the document to HTML using <span class='TEX'>T<span class='E'>E</span>X</span>4ht,
 the second step publishes the generated HTML files on the Web using GitHub
-Pages<span class='footnote-mark'><a href='#fn4x0' id='fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a id='x1-4001f4'></a>
-</p><!-- l. 31 --><p class='indent'>   For the web publishing we will use the <span class='obeylines-h'><span class='verb'><span class='cmtt-10'>actions-gh-pages</span></span></span>
-action<span class='footnote-mark'><a href='#fn5x0' id='fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a id='x1-4002f5'></a>.
+Pages<span class='footnote-mark'><a id='fn4x0-bk' href='#fn4x0'><sup class='textsuperscript'>4</sup></a></span><a id='x1-4001f4'></a>
+</p><!-- l. 34 --><p class='indent'>   For the web publishing we will use the <span class='obeylines-h'><span class='verb'><span class='cmtt-10'>actions-gh-pages</span></span></span>
+action<span class='footnote-mark'><a id='fn5x0-bk' href='#fn5x0'><sup class='textsuperscript'>5</sup></a></span><a id='x1-4002f5'></a>.
 Follow <a href='https://github.com/peaceiris/actions-gh-pages#1-add-ssh-deploy-key'>the instructions</a> and create the keys.
-</p><!-- l. 33 --><p class='indent'>   When the keys are set up, you can create the workflow file. Select the <span class='cmtt-10'>Actions</span>
+</p><!-- l. 36 --><p class='indent'>   When the keys are set up, you can create the workflow file. Select the <span class='cmtt-10'>Actions</span>
 tab and click the <span class='cmtt-10'>Set up a workflow yourself </span>button. It will open an editor
 with a YAML file for the Action workflow. Replace it with the following
 content:
 </p>
-   <!-- l. 35 -->
+   <!-- l. 38 -->
 <p><a id='x1-4003'></a></p>
    <div id='listing-1' class='lstlisting'><span class='label'><a id='x1-4004r1'></a></span><span class='cmtt-10'>name: CI </span><br /><span class='label'><a id='x1-4005r2'></a></span><span class='cmtt-10'>on: [push] </span><br /><span class='label'><a id='x1-4006r3'></a></span><span class='cmtt-10'>jobs: </span><br /><span class='label'><a id='x1-4007r4'></a></span><span class='cmtt-10'>  build: </span><br /><span class='label'><a id='x1-4008r5'></a></span><span class='cmtt-10'>   runs-on: ubuntu-latest </span><br /><span class='label'><a id='x1-4009r6'></a></span><span class='cmtt-10'>   steps: </span><br /><span class='label'><a id='x1-4010r7'></a></span><span class='cmtt-10'>   - uses: actions/checkout@v1 </span><br /><span class='label'><a id='x1-4011r8'></a></span><span class='cmtt-10'>   - name: Run make4ht </span><br /><span class='label'><a id='x1-4012r9'></a></span><span class='cmtt-10'>     uses: docker://michalh21/make4ht-docker:latest </span><br /><span class='label'><a id='x1-4013r10'></a></span><span class='cmtt-10'>     env: </span><br /><span class='label'><a id='x1-4014r11'></a></span><span class='cmtt-10'>       command: "make4ht -u -d out main.tex" </span><br /><span class='label'><a id='x1-4015r12'></a></span><span class='cmtt-10'>   - name: Publish the web pages </span><br /><span class='label'><a id='x1-4016r13'></a></span><span class='cmtt-10'>     uses: peaceiris/actions-gh-pages@v2.5.0 </span><br /><span class='label'><a id='x1-4017r14'></a></span><span class='cmtt-10'>     env: </span><br /><span class='label'><a id='x1-4018r15'></a></span><span class='cmtt-10'>       ACTIONS_DEPLOY_KEY: </span><span class='tctt-1000'>$</span><span class='cmtt-10'>{{ secrets.ACTIONS_DEPLOY_KEY }} </span><br /><span class='label'><a id='x1-4019r16'></a></span><span class='cmtt-10'>       PUBLISH_BRANCH: gh-pages </span><br /><span class='label'><a id='x1-4020r17'></a></span><span class='cmtt-10'>       PUBLISH_DIR: ./out</span>
    
    </div>
-<!-- l. 55 --><p class='indent'>   The important part of the configuration is the <span class='cmtt-10'>command </span>key. It
+<!-- l. 58 --><p class='indent'>   The important part of the configuration is the <span class='cmtt-10'>command </span>key. It
 contains the actual command used for the compilation. We use
-Make4ht<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-4021f6'></a>,
+Make4ht<span class='footnote-mark'><a id='fn6x0-bk' href='#fn6x0'><sup class='textsuperscript'>6</sup></a></span><a id='x1-4021f6'></a>,
 build system for <span class='TEX'>T<span class='E'>E</span>X</span>4ht. The command <span class='obeylines-h'><span class='verb'><span class='cmtt-10'>"make4ht -u -d out main.tex"</span></span></span> will
 create UTF-8 encoded HTML file from the <span class='cmtt-10'>main.tex </span>input file. The <span class='cmtt-10'>-d </span>option
 specifies the output directory for the HTML files. This directory will be used for the
 web publishing and should be passed to the <span class='obeylines-h'><span class='verb'><span class='cmtt-10'>PUBLISH_DIR</span></span></span>.
-</p><!-- l. 58 --><p class='indent'>   The web will be published at <a href='https://yourgitubusename.github.io/project_name/main.html' class='url'><span class='cmtt-10'>https://yourgitubusename.github.io/project_name/main.html</span></a>.
+</p><!-- l. 61 --><p class='indent'>   The web will be published at <a class='url' href='https://yourgitubusename.github.io/project_name/main.html'><span class='cmtt-10'>https://yourgitubusename.github.io/project_name/main.html</span></a>.
 </p>
      <ul class='itemize1'>
      <li class='itemize'>This                                                                            document:
-     <a href='https://www.kodymirus.cz/overleaf-html-sample/main.html' class='url'><span class='cmtt-10'>https://www.kodymirus.cz/overleaf-html-sample/main.html</span></a>
+     <a class='url' href='https://www.kodymirus.cz/overleaf-html-sample/main.html'><span class='cmtt-10'>https://www.kodymirus.cz/overleaf-html-sample/main.html</span></a>
      </li>
      <li class='itemize'>Source                                                                         repository:
-     <a href='https://github.com/michal-h21/overleaf-html-sample' class='url'><span class='cmtt-10'>https://github.com/michal-h21/overleaf-html-sample</span></a></li></ul>
-   <div class='footnotes'><!-- l. 19 --><p class='indent'>   <span class='footnote-mark'><a href='#fn1x0-bk' id='fn1x0'><sup class='textsuperscript'>1</sup></a></span><a href='https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general' class='url'><span class='cmtt-8'>https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general</span></a></p>
-<!-- l. 20 --><p class='indent'>    <span class='footnote-mark'><a href='#fn2x0-bk' id='fn2x0'><sup class='textsuperscript'>2</sup></a></span><a href='https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-github-actions' class='url'><span class='cmtt-8'>https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-github-actions</span></a></p>
-<!-- l. 26 --><p class='indent'>    <span class='footnote-mark'><a href='#fn3x0-bk' id='fn3x0'><sup class='textsuperscript'>3</sup></a></span><a href='https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket?' class='url'><span class='cmtt-8'>https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket?</span></a></p>
-<!-- l. 29 --><p class='indent'>    <span class='footnote-mark'><a href='#fn4x0-bk' id='fn4x0'><sup class='textsuperscript'>4</sup></a></span><a href='https://pages.github.com/' class='url'><span class='cmtt-8'>https://pages.github.com/</span></a></p>
-<!-- l. 31 --><p class='indent'>    <span class='footnote-mark'><a href='#fn5x0-bk' id='fn5x0'><sup class='textsuperscript'>5</sup></a></span><a href='https://github.com/peaceiris/actions-gh-pages' class='url'><span class='cmtt-8'>https://github.com/peaceiris/actions-gh-pages</span></a></p>
-<!-- l. 55 --><p class='indent'>    <span class='footnote-mark'><a href='#fn6x0-bk' id='fn6x0'><sup class='textsuperscript'>6</sup></a></span><a href='https://ctan.org/pkg/make4ht?lang=en' class='url'><span class='cmtt-8'>https://ctan.org/pkg/make4ht?lang=en</span></a></p>                                      </div>
+     <a class='url' href='https://github.com/michal-h21/overleaf-html-sample'><span class='cmtt-10'>https://github.com/michal-h21/overleaf-html-sample</span></a></li></ul>
+   <div class='footnotes'><!-- l. 19 --><p class='indent'>   <span class='footnote-mark'><a id='fn1x0' href='#fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a class='url' href='https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general'><span class='cmtt-8'>https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general</span></a></p>
+<!-- l. 20 --><p class='indent'>    <span class='footnote-mark'><a id='fn2x0' href='#fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a class='url' href='https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-github-actions'><span class='cmtt-8'>https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-github-actions</span></a></p>
+<!-- l. 28 --><p class='indent'>    <span class='footnote-mark'><a id='fn3x0' href='#fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a href='https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket%3F'><span class='cmtt-8'>https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket%3F</span></a></p>
+<!-- l. 32 --><p class='indent'>    <span class='footnote-mark'><a id='fn4x0' href='#fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a class='url' href='https://pages.github.com/'><span class='cmtt-8'>https://pages.github.com/</span></a></p>
+<!-- l. 34 --><p class='indent'>    <span class='footnote-mark'><a id='fn5x0' href='#fn5x0-bk'><sup class='textsuperscript'>5</sup></a></span><a class='url' href='https://github.com/peaceiris/actions-gh-pages'><span class='cmtt-8'>https://github.com/peaceiris/actions-gh-pages</span></a></p>
+<!-- l. 58 --><p class='indent'>    <span class='footnote-mark'><a id='fn6x0' href='#fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a class='url' href='https://ctan.org/pkg/make4ht?lang=en'><span class='cmtt-8'>https://ctan.org/pkg/make4ht?lang=en</span></a></p>                                      </div>
  
 </body> 
 </html>
