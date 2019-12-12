@@ -130,9 +130,5 @@ figcaption.caption span.id{font-weight: bold; white-space: nowrap; }
 div.lstlisting{font-family: monospace; white-space: nowrap; margin-top:0.5em; margin-bottom:0.5em; }
 div.lstinputlisting{ font-family: monospace; white-space: nowrap; }
 .lstinputlisting .label{margin-right:0.5em;}
-body{max-width:40em; margin: 0 auto;}
- span.verb, span.cmtt-10, span.cmtt-8{font-size:1rem}
-.footnotes p + p{margin-top:0.3rem;}
-p.indent{text-indent:0pt;}
 /* end css.sty */
 
