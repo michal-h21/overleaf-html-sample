@@ -1,11 +1,12 @@
 <!DOCTYPE html> 
-<html xml:lang='en-US' lang='en-US'> 
-<head><title>Create HTML output using GitHub Actions</title> 
+<html lang='en-US' xml:lang='en-US'> 
+<head> <title>Create HTML output using GitHub Actions</title> 
 <meta charset='utf-8' /> 
 <meta name='generator' content='TeX4ht (http://www.tug.org/tex4ht/)' /> 
 <meta name='viewport' content='width=device-width,initial-scale=1' /> 
-<link href='main.css' rel='stylesheet' type='text/css' /> 
+<link rel='stylesheet' href='main.css' type='text/css' /> 
 <meta name='src' content='main.tex' /> 
+<link rel='stylesheet' href='https://edwardtufte.github.io/tufte-css/tufte.css' type='text/css' /> 
 </head><body>
    <div class='maketitle'>
                                                                   
@@ -54,7 +55,7 @@ content:
 </p>
    <!-- l. 35 -->
 <p><a id='x1-4003'></a></p>
-   <div class='lstlisting' id='listing-1'><span class='label'><a id='x1-4004r1'></a></span><span class='cmtt-10'>name: CI </span><br /><span class='label'><a id='x1-4005r2'></a></span><span class='cmtt-10'>on: [push] </span><br /><span class='label'><a id='x1-4006r3'></a></span><span class='cmtt-10'>jobs: </span><br /><span class='label'><a id='x1-4007r4'></a></span><span class='cmtt-10'>  build: </span><br /><span class='label'><a id='x1-4008r5'></a></span><span class='cmtt-10'>   runs-on: ubuntu-latest </span><br /><span class='label'><a id='x1-4009r6'></a></span><span class='cmtt-10'>   steps: </span><br /><span class='label'><a id='x1-4010r7'></a></span><span class='cmtt-10'>   - uses: actions/checkout@v1 </span><br /><span class='label'><a id='x1-4011r8'></a></span><span class='cmtt-10'>   - name: Run make4ht </span><br /><span class='label'><a id='x1-4012r9'></a></span><span class='cmtt-10'>     uses: docker://michalh21/make4ht-docker:latest </span><br /><span class='label'><a id='x1-4013r10'></a></span><span class='cmtt-10'>     env: </span><br /><span class='label'><a id='x1-4014r11'></a></span><span class='cmtt-10'>       command: "make4ht -u -d out main.tex" </span><br /><span class='label'><a id='x1-4015r12'></a></span><span class='cmtt-10'>   - name: Publish the web pages </span><br /><span class='label'><a id='x1-4016r13'></a></span><span class='cmtt-10'>     uses: peaceiris/actions-gh-pages@v2.5.0 </span><br /><span class='label'><a id='x1-4017r14'></a></span><span class='cmtt-10'>     env: </span><br /><span class='label'><a id='x1-4018r15'></a></span><span class='cmtt-10'>       ACTIONS_DEPLOY_KEY: </span><span class='tctt-1000'>$</span><span class='cmtt-10'>{{ secrets.ACTIONS_DEPLOY_KEY }} </span><br /><span class='label'><a id='x1-4019r16'></a></span><span class='cmtt-10'>       PUBLISH_BRANCH: gh-pages </span><br /><span class='label'><a id='x1-4020r17'></a></span><span class='cmtt-10'>       PUBLISH_DIR: ./out</span>
+   <div id='listing-1' class='lstlisting'><span class='label'><a id='x1-4004r1'></a></span><span class='cmtt-10'>name: CI </span><br /><span class='label'><a id='x1-4005r2'></a></span><span class='cmtt-10'>on: [push] </span><br /><span class='label'><a id='x1-4006r3'></a></span><span class='cmtt-10'>jobs: </span><br /><span class='label'><a id='x1-4007r4'></a></span><span class='cmtt-10'>  build: </span><br /><span class='label'><a id='x1-4008r5'></a></span><span class='cmtt-10'>   runs-on: ubuntu-latest </span><br /><span class='label'><a id='x1-4009r6'></a></span><span class='cmtt-10'>   steps: </span><br /><span class='label'><a id='x1-4010r7'></a></span><span class='cmtt-10'>   - uses: actions/checkout@v1 </span><br /><span class='label'><a id='x1-4011r8'></a></span><span class='cmtt-10'>   - name: Run make4ht </span><br /><span class='label'><a id='x1-4012r9'></a></span><span class='cmtt-10'>     uses: docker://michalh21/make4ht-docker:latest </span><br /><span class='label'><a id='x1-4013r10'></a></span><span class='cmtt-10'>     env: </span><br /><span class='label'><a id='x1-4014r11'></a></span><span class='cmtt-10'>       command: "make4ht -u -d out main.tex" </span><br /><span class='label'><a id='x1-4015r12'></a></span><span class='cmtt-10'>   - name: Publish the web pages </span><br /><span class='label'><a id='x1-4016r13'></a></span><span class='cmtt-10'>     uses: peaceiris/actions-gh-pages@v2.5.0 </span><br /><span class='label'><a id='x1-4017r14'></a></span><span class='cmtt-10'>     env: </span><br /><span class='label'><a id='x1-4018r15'></a></span><span class='cmtt-10'>       ACTIONS_DEPLOY_KEY: </span><span class='tctt-1000'>$</span><span class='cmtt-10'>{{ secrets.ACTIONS_DEPLOY_KEY }} </span><br /><span class='label'><a id='x1-4019r16'></a></span><span class='cmtt-10'>       PUBLISH_BRANCH: gh-pages </span><br /><span class='label'><a id='x1-4020r17'></a></span><span class='cmtt-10'>       PUBLISH_DIR: ./out</span>
    
    </div>
 <!-- l. 55 --><p class='indent'>   The important part of the configuration is the <span class='cmtt-10'>command </span>key. It
