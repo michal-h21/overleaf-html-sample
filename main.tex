@@ -4,7 +4,7 @@
 \title{Create HTML output using Github Actions}
 \author{Michal Hoftich}
 \date{December 2019}
-\usepackage{url}
+\usepackage{hyperref}
 \newcommand{\cmdname}[1]{\texttt{#1}}
 \newcommand\footurl[1]{\footnote{\url{#1}}}
 
@@ -14,10 +14,11 @@
 
 \section{Introduction}
 
-I've set up Docker image\footurl{https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general} for Make4ht, \LaTeX\ to XML converter. Thanks to Github Actions, it is possible to use it for Overleaf document to HTML conversion.
+I've set up Docker image\footurl{https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general} for TeX4ht, \LaTeX\ to XML converter. Thanks to Github Actions, it is possible to use it for Overleaf document to HTML conversion.
 
 \section{Setup}
 
-Create 
+First step is to sync your Overleaf project with your Github account, following a guide at Overleaf\footurl{https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket\%3F}. 
+
 
 \end{document}
