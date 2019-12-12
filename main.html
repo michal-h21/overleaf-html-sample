@@ -1,11 +1,11 @@
 <!DOCTYPE html> 
-<html lang='en-US' xml:lang='en-US'> 
+<html xml:lang='en-US' lang='en-US'> 
 <head><title>Create HTML output using GitHub Actions</title> 
 <meta charset='utf-8' /> 
-<meta content='TeX4ht (http://www.tug.org/tex4ht/)' name='generator' /> 
-<meta content='width=device-width,initial-scale=1' name='viewport' /> 
-<link href='main.css' rel='stylesheet' type='text/css' /> 
-<meta content='main.tex' name='src' /> 
+<meta name='generator' content='TeX4ht (http://www.tug.org/tex4ht/)' /> 
+<meta name='viewport' content='width=device-width,initial-scale=1' /> 
+<link rel='stylesheet' type='text/css' href='main.css' /> 
+<meta name='src' content='main.tex' /> 
 </head><body>
    <div class='maketitle'>
                                                                   
@@ -20,30 +20,28 @@
 <div class='date'><span class='cmr-12'>December 2019</span></div>
    </div>
    <h3 class='sectionHead'><span class='titlemark'>1   </span> <a id='x1-10001'></a>Introduction</h3>
-<!-- l. 18 --><p class='noindent'>I’ve set up Docker image<span class='footnote-mark'><a id='fn1x0-bk' href='#fn1x0'><sup class='textsuperscript'>1</sup></a></span><a id='x1-1001f1'></a>
+<!-- l. 18 --><p class='noindent'>I’ve set up Docker image<span class='footnote-mark'><a href='main2.html#fn1x0'><sup class='textsuperscript'>1</sup></a></span><a id='x1-1001f1'></a> 
 for <span class='TEX'>T<span class='E'>E</span>X</span>4ht, <span class='LATEX'>L<span class='A'>A</span><span class='TEX'>T<span class='E'>E</span>X</span></span> to XML converter. Thanks to GitHub
-Actions<span class='footnote-mark'><a id='fn2x0-bk' href='#fn2x0'><sup class='textsuperscript'>2</sup></a></span><a id='x1-1002f2'></a>,
+Actions<span class='footnote-mark'><a href='main3.html#fn2x0'><sup class='textsuperscript'>2</sup></a></span><a id='x1-1002f2'></a> ,
 it is possible to use it for Overleaf document to HTML conversion.
-</p><!-- l. 21 --><p class='noindent'>
 </p>
    <h3 class='sectionHead'><span class='titlemark'>2   </span> <a id='x1-20002'></a>Setup</h3>
 <!-- l. 23 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead'><span class='titlemark'>2.1   </span> <a id='x1-30002.1'></a>On Overleaf</h4>
 <!-- l. 25 --><p class='noindent'>First step is to sync your Overleaf project with your GitHub account, following a guide at
-Overleaf<span class='footnote-mark'><a id='fn3x0-bk' href='#fn3x0'><sup class='textsuperscript'>3</sup></a></span><a id='x1-3001f3'></a>.
+Overleaf<span class='footnote-mark'><a href='main4.html#fn3x0'><sup class='textsuperscript'>3</sup></a></span><a id='x1-3001f3'></a> .
 Don’t forget to run the <span class='cmtt-10'>Sync -&gt; GitHub </span>command from Overleaf main menu every
 time you updated the document.
-</p><!-- l. 27 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead'><span class='titlemark'>2.2   </span> <a id='x1-40002.2'></a>On GitHub</h4>
                                                                   
 
                                                                   
+</p>
+   <h4 class='subsectionHead'><span class='titlemark'>2.2   </span> <a id='x1-40002.2'></a>On GitHub</h4>
 <!-- l. 28 --><p class='noindent'>Next step is to configure actions in the Github project created for your document.
 Two steps are necessary – first one compiles the document to HTML using <span class='TEX'>T<span class='E'>E</span>X</span>4ht,
 the second step publishes the generated HTML files on the Web using GitHub
-Pages<span class='footnote-mark'><a id='fn4x0-bk' href='#fn4x0'><sup class='textsuperscript'>4</sup></a></span><a id='x1-4001f4'></a>
+Pages<span class='footnote-mark'><a href='main5.html#fn4x0'><sup class='textsuperscript'>4</sup></a></span><a id='x1-4001f4'></a> 
 </p><!-- l. 30 --><p class='indent'>   Select the <span class='cmtt-10'>Actions </span>tab and click the <span class='cmtt-10'>Set up a workflow yourself </span>button. It
 will open an editor with a YAML file for the Action workflow. Replace it with the
 following content:
@@ -53,10 +51,6 @@ following content:
    <div id='listing-1' class='lstlisting'><span class='label'><a id='x1-4003r1'></a></span><span class='cmtt-10'>name: CI </span><br /><span class='label'><a id='x1-4004r2'></a></span><span class='cmtt-10'>on: [push] </span><br /><span class='label'><a id='x1-4005r3'></a></span><span class='cmtt-10'>jobs: </span><br /><span class='label'><a id='x1-4006r4'></a></span><span class='cmtt-10'>  build: </span><br /><span class='label'><a id='x1-4007r5'></a></span><span class='cmtt-10'>   runs-on: ubuntu-latest </span><br /><span class='label'><a id='x1-4008r6'></a></span><span class='cmtt-10'>   steps: </span><br /><span class='label'><a id='x1-4009r7'></a></span><span class='cmtt-10'>   - uses: actions/checkout@v1 </span><br /><span class='label'><a id='x1-4010r8'></a></span><span class='cmtt-10'>   - name: Run make4ht </span><br /><span class='label'><a id='x1-4011r9'></a></span><span class='cmtt-10'>     uses: docker://michalh21/make4ht-docker:latest </span><br /><span class='label'><a id='x1-4012r10'></a></span><span class='cmtt-10'>     env: </span><br /><span class='label'><a id='x1-4013r11'></a></span><span class='cmtt-10'>       command: "make4ht -ua debug -d out main.tex" </span><br /><span class='label'><a id='x1-4014r12'></a></span><span class='cmtt-10'>   - name: Publish the web pages </span><br /><span class='label'><a id='x1-4015r13'></a></span><span class='cmtt-10'>     uses: peaceiris/actions-gh-pages@v2.5.0 </span><br /><span class='label'><a id='x1-4016r14'></a></span><span class='cmtt-10'>     env: </span><br /><span class='label'><a id='x1-4017r15'></a></span><span class='cmtt-10'>       ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }} </span><br /><span class='label'><a id='x1-4018r16'></a></span><span class='cmtt-10'>       PUBLISH_BRANCH: gh-pages </span><br /><span class='label'><a id='x1-4019r17'></a></span><span class='cmtt-10'>       PUBLISH_DIR: ./out</span>
    
    </div>
-   <div class='footnotes'><!-- l. 18 --><p class='indent'>   <span class='footnote-mark'><a id='fn1x0' href='#fn1x0-bk'><sup class='textsuperscript'>1</sup></a></span><a class='url' href='https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general'><span class='cmtt-8'>https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general</span></a></p>
-<!-- l. 19 --><p class='indent'>    <span class='footnote-mark'><a id='fn2x0' href='#fn2x0-bk'><sup class='textsuperscript'>2</sup></a></span><a class='url' href='https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-github-actions'><span class='cmtt-8'>https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-github-actions</span></a></p>
-<!-- l. 25 --><p class='indent'>    <span class='footnote-mark'><a id='fn3x0' href='#fn3x0-bk'><sup class='textsuperscript'>3</sup></a></span><a class='url' href='https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket\%3F'><span class='cmtt-8'>https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket\%3F</span></a></p>
-<!-- l. 28 --><p class='indent'>    <span class='footnote-mark'><a id='fn4x0' href='#fn4x0-bk'><sup class='textsuperscript'>4</sup></a></span><a class='url' href='https://pages.github.com/'><span class='cmtt-8'>https://pages.github.com/</span></a></p>                                                 </div>
- 
+    
 </body> 
 </html>
