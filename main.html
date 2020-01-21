@@ -1,11 +1,11 @@
 <!DOCTYPE html> 
-<html lang='en-US' xml:lang='en-US'> 
+<html xml:lang='en-US' lang='en-US'> 
 <head> <title>Create HTML output using GitHub Actions</title> 
 <meta charset='utf-8' /> 
-<meta content='TeX4ht (http://www.tug.org/tex4ht/)' name='generator' /> 
-<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<meta name='generator' content='TeX4ht (http://www.tug.org/tex4ht/)' /> 
+<meta name='viewport' content='width=device-width,initial-scale=1' /> 
 <link href='main.css' rel='stylesheet' type='text/css' /> 
-<meta content='main.tex' name='src' /> 
+<meta name='src' content='main.tex' /> 
 </head><body>
    <div class='maketitle'>
                                                                   
@@ -60,12 +60,13 @@ content:
 <!-- l. 58 --><p class='indent'>   The important part of the configuration is the <span class='cmtt-10'>command </span>key. It
 contains the actual command used for the compilation. We use
 Make4ht<span class='footnote-mark'><a href='#fn6x0' id='fn6x0-bk'><sup class='textsuperscript'>6</sup></a></span><a id='x1-4021f6'></a>,
-build system for <span class='TEX'>T<span class='E'>E</span>X</span>4ht. The command <span class='obeylines-h'><span class='verb'><span class='cmtt-10'>"make4ht -u -d out main.tex"</span></span></span> will
-create UTF-8 encoded HTML file from the <span class='cmtt-10'>main.tex </span>input file. The <span class='cmtt-10'>-d </span>option
-specifies the output directory for the HTML files. This directory will be used for the
-web publishing and should be passed to the <span class='obeylines-h'><span class='verb'><span class='cmtt-10'>PUBLISH_DIR</span></span></span>.
+build system for <span class='TEX'>T<span class='E'>E</span>X</span>4ht. Command <span class='obeylines-h'><span class='verb'><span class='cmtt-10'>"make4ht -u -d out main.tex"</span></span></span> creates
+UTF-8 encoded HTML file from the <span class='cmtt-10'>main.tex </span>input file. The <span class='cmtt-10'>-d </span>option specifies the
+output directory for the HTML files. This directory will be used for the web
+publishing and should be passed to the <span class='obeylines-h'><span class='verb'><span class='cmtt-10'>PUBLISH_DIR</span></span></span>.
 </p><!-- l. 61 --><p class='indent'>   The web will be published at <a href='https://yourgitubusename.github.io/project_name/main.html' class='url'><span class='cmtt-10'>https://yourgitubusename.github.io/project_name/main.html</span></a>.
 </p>
+   <h4 class='subsectionHead'><span class='titlemark'>2.3   </span> <a id='x1-50002.3'></a>Links</h4>
      <ul class='itemize1'>
      <li class='itemize'>This                                                                            document:
      <a href='https://www.kodymirus.cz/overleaf-html-sample/main.html' class='url'><span class='cmtt-10'>https://www.kodymirus.cz/overleaf-html-sample/main.html</span></a>
