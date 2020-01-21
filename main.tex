@@ -16,8 +16,16 @@
 
 \section{Introduction}
 
-I've set up Docker image\footurl{https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general} for \TeX4ht, \LaTeX\ to XML converter. Thanks to GitHub 
-Actions\footurl{https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-github-actions}, it is possible to use it for Overleaf document to HTML conversion.
+Overleaf\footurl{https://www.overleaf.com/} is popular online \LaTeX{} editor. It can generate PDF files 
+without need to install alocal \TeX{} distribution, but it doesn't support conversion to HTML out of the box.
+It is possible to create a custom build file for Latexmk\footurl{https://www.overleaf.com/latex/examples/testing-html-export-with-tex4ht/rqcknjvwyyry} 
+that uses \TeX4ht for the conversion, but the generated HTML file is not easilly accessible.
+
+To make the conversion easier, I've set up Docker image\footurl{https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general} for \TeX4ht. 
+Thanks to GitHub Actions\footurl{https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-github-actions}, 
+it is possible to use this image for the conversion of the Overleaf document to HTML. 
+The generated files can be published on the web using Github Pages, where they can be automatically 
+updated on every document change.
 
 \section{Setup}
 
@@ -25,8 +33,8 @@ Actions\footurl{https://help.github.com/en/actions/automating-your-workflow-with
 
 First step is to sync your Overleaf project with your GitHub account, following a guide at 
 Overleaf\footnote{\href{https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket\%3F}
-{\texttt{https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket\%3F}}}. 
-Don't forget to run the \cmdname{Sync -> GitHub} command from Overleaf main menu every time you updated the document.
+{\texttt{https://www.overleaf.com/learn/how-to/How\_do\_I\_connect\_an\_Overleaf\_project\_with\_a\allowbreak\_repo\_on\_GitHub,\_GitLab\_or\_BitBucket\%3F}}}. 
+Don't forget to run the \cmdname{Sync -> GitHub} command from Overleaf main menu every time you had updated the document.
 
 \subsection{On GitHub}
 Next step is to configure actions in the Github project created for your document. Two steps are necessary -- first  one compiles the document to HTML using \TeX4ht, the second step publishes the generated HTML files on the Web using GitHub Pages\footurl{https://pages.github.com/}
@@ -59,7 +67,7 @@ The important part of the configuration is the \cmdname{command} key. It contain
 Command \verb|"make4ht -u -d out main.tex"| creates UTF-8 encoded HTML file from the \cmdname{main.tex} input file. The \texttt{-d} option specifies the output directory for the HTML files. This directory will be used for the web publishing and should be passed to the \verb|PUBLISH_DIR|.
 
 The web will be published at \url{https://yourgitubusename.github.io/project_name/main.html}. 
-\subsection{Links}
+\section{Links}
 \begin{itemize}
     \item This document: \url{https://www.kodymirus.cz/overleaf-html-sample/main.html}
     \item Source repository: \url{https://github.com/michal-h21/overleaf-html-sample} 
