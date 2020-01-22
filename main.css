@@ -134,5 +134,6 @@ body{max-width:50em; margin: 0 auto;}
  span.verb, span.cmtt-10, span.cmtt-8{font-family:monospace,monospace;font-size:1em}
 .footnotes p + p{margin-top:0.3rem;line-height:1.5;margin-left:1rem;text-indent:-1rem;}
 p.indent{text-indent:0pt;}
+p{line-height:1.4;}
 /* end css.sty */
 
