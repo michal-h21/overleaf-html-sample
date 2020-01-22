@@ -23,14 +23,14 @@ There are many tools that support the conversion from \LaTeX{} to HTML, each of 
 
 \TeX4ht uses \TeX{} for the actual conversion. It loads special configuration files for internal \LaTeX{} code or for the used packages. These configuration files patch commands with special instructions that insert HTML (or other supported formats). Because it uses \TeX{} for the actual conversion, it supports custom commands. It also supports font changing commands, so  it doesn't need custom configurations in many cases.
 
-It is possible to create a custom build file for Latexmk\footurl{https://www.overleaf.com/latex/examples/testing-html-export-with-tex4ht/rqcknjvwyyry} 
-that uses \TeX4ht for the conversion, but the generated HTML file is not easilly accessible.  
+The first method that use \TeX4ht for the conversion was presented by LianTze Lim. It uses a custom build file for Latexmk\footurl{https://www.overleaf.com/latex/examples/testing-html-export-with-tex4ht/rqcknjvwyyry} 
+that calls \TeX4ht. The downside is that the generated HTML file is not easilly accessible.  
 
 To make the conversion easier, I've set up Docker image\footurl{https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general} for \TeX4ht. 
 Thanks to GitHub Actions\footurl{https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-github-actions}, 
 it is possible to use this image for the conversion of the Overleaf document to HTML. 
 The generated files can be published on the web using Github Pages, where they can be automatically 
-updated on every document change.
+updated on every document change. This document is an example of this setup.
 
 \section{Setup}
 
