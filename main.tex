@@ -17,7 +17,12 @@
 \section{Introduction}
 
 Overleaf\footurl{https://www.overleaf.com/} is popular online \LaTeX{} editor. It can generate PDF files 
-without need to install alocal \TeX{} distribution, but it doesn't support conversion to HTML out of the box.
+without need to install a local \TeX{} distribution. Unfortunatelly, it doesn't support conversion to HTML out of the box. To get the HTML version of the document, we must use some tricks.
+
+There are many tools that support the conversion from \LaTeX{} to HTML, each of them use a different approach. I am a developer of \TeX4ht\footurl{https://tug.org/tex4ht/}, so I will present solution that uses this tool. 
+
+\TeX4ht is tool that use use \TeX{} for the actual conversion. It loads special configuration files for \LaTeX{} code and used packages. These configuration files patch commands with special instructions that insert HTML (or other supported formats). Because it uses \TeX{} for the actual conversion, it supports also custom commands. It also supports font changing commands, so  it doesn't need custom configurations in many cases.
+
 It is possible to create a custom build file for Latexmk\footurl{https://www.overleaf.com/latex/examples/testing-html-export-with-tex4ht/rqcknjvwyyry} 
 that uses \TeX4ht for the conversion, but the generated HTML file is not easilly accessible.
 
