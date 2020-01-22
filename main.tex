@@ -21,10 +21,10 @@ without need to install a local \TeX{} distribution. Unfortunatelly, it doesn't 
 
 There are many tools that support the conversion from \LaTeX{} to HTML, each of them use a different approach. I am a developer of \TeX4ht\footurl{https://tug.org/tex4ht/}, so I will present solution that uses this tool. 
 
-\TeX4ht is tool that use use \TeX{} for the actual conversion. It loads special configuration files for \LaTeX{} code and used packages. These configuration files patch commands with special instructions that insert HTML (or other supported formats). Because it uses \TeX{} for the actual conversion, it supports also custom commands. It also supports font changing commands, so  it doesn't need custom configurations in many cases.
+\TeX4ht uses \TeX{} for the actual conversion. It loads special configuration files for internal \LaTeX{} code or for the used packages. These configuration files patch commands with special instructions that insert HTML (or other supported formats). Because it uses \TeX{} for the actual conversion, it supports custom commands. It also supports font changing commands, so  it doesn't need custom configurations in many cases.
 
 It is possible to create a custom build file for Latexmk\footurl{https://www.overleaf.com/latex/examples/testing-html-export-with-tex4ht/rqcknjvwyyry} 
-that uses \TeX4ht for the conversion, but the generated HTML file is not easilly accessible.
+that uses \TeX4ht for the conversion, but the generated HTML file is not easilly accessible.  
 
 To make the conversion easier, I've set up Docker image\footurl{https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general} for \TeX4ht. 
 Thanks to GitHub Actions\footurl{https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-github-actions}, 
