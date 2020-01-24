@@ -3,10 +3,6 @@
 .cmr-17{font-size:170%;}
 .cmr-12{font-size:120%;}
 .cmtt-10{font-family: monospace;}
-.cmtt-10{font-family: monospace;}
-.cmr-9{font-size:90%;}
-.cmtt-8{font-size:80%;font-family: monospace;}
-.cmtt-8{font-family: monospace;}
 .tctt-1000{font-family: monospace;}
 p.noindent { text-indent: 0em }
 td p.noindent { text-indent: 0em; margin-top:0em; }
@@ -130,7 +126,8 @@ figcaption.caption span.id{font-weight: bold; white-space: nowrap; }
 div.lstlisting{font-family: monospace; white-space: nowrap; margin-top:0.5em; margin-bottom:0.5em; }
 div.lstinputlisting{ font-family: monospace; white-space: nowrap; }
 .lstinputlisting .label{margin-right:0.5em;}
-body{max-width:50em; margin: 0 auto;}
+body{max-width:50em; margin: 2em auto;}
+body{font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;}
  span.verb, span.cmtt-10, span.cmtt-8{font-family:monospace,monospace;font-size:1em}
 .footnotes p + p{margin-top:0.3rem;line-height:1.5;margin-left:1rem;text-indent:-1rem;}
 p.indent{text-indent:0pt;}
