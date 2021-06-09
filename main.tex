@@ -3,7 +3,7 @@
 
 \title{Create HTML output using GitHub Actions}
 \author{Michal Hoftich}
-\date{January 2020}
+\date{January 2020, updated June 2021}
 \usepackage{hyperref}
 \usepackage{listings}
 \newcommand{\cmdname}[1]{\texttt{#1}}
@@ -62,12 +62,13 @@ document. Two steps are necessary -- first  one compiles the document to HTML
 using \TeX4ht, the second step publishes the generated HTML files on the Web
 using \urllink{GitHub Pages}{https://pages.github.com/}
 
-For the web publishing we will use the \verb|actions-gh-pages|
-\urllink{action}{https://github.com/peaceiris/actions-gh-pages}. Follow
-\href{https://github.com/peaceiris/actions-gh-pages\#1-add-ssh-deploy-key}{the
-instructions} and create the keys.
+For the web publishing we  use the \verb|actions-gh-pages|
+\urllink{action}{https://github.com/peaceiris/actions-gh-pages}. 
 
-When the keys are set up, you can create the workflow file. Select the \cmdname{Actions} tab and click the \cmdname{Set up a workflow yourself} button. It will open an editor with a YAML file for the Action workflow. Replace it with the following content:
+When the keys are set up, you can create the workflow file. Select the
+\cmdname{Actions} tab and click the \cmdname{Set up a workflow yourself}
+button. It will open an editor with a YAML file for the Action workflow.
+Replace it with the following content:
 
 \begin{lstlisting}{yaml}
 name: CI
@@ -78,19 +79,26 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run make4ht
-      uses: docker://michalh21/make4ht-docker:latest
+      uses: docker://ghcr.io/michal-h21/make4ht-action:latest
       env:
         command: "make4ht -u -d out main.tex"
     - name: Publish the web pages
-      uses: peaceiris/actions-gh-pages@v2.5.0
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./out    
+      uses:  peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./out
 \end{lstlisting}
 
-The important part of the configuration is the \cmdname{command} key. It contains the actual command used for the compilation. We use \urllink{Make4ht}{https://ctan.org/pkg/make4ht?lang=en}, build system for \TeX4ht.
-Command \verb|"make4ht -u -d out main.tex"| creates UTF-8 encoded HTML file from the \cmdname{main.tex} input file. The \texttt{-d} option specifies the output directory for the HTML files. This directory will be used for the web publishing and should be passed to the \verb|PUBLISH_DIR|.
+The important part of the configuration is the \cmdname{command} key. It
+contains the actual command used for the compilation. We use
+\urllink{Make4ht}{https://ctan.org/pkg/make4ht?lang=en}, build system for
+\TeX4ht.
+
+Command \verb|"make4ht -u -d out main.tex"| creates UTF-8 encoded HTML file
+from the \cmdname{main.tex} input file. The \texttt{-d} option specifies the
+output directory for the HTML files. This directory will be used for the web
+publishing and should be passed to the \verb|publish_dir| key in
+\textit{Publish the web pages} step.
 
 The web will be published at \url{https://yourgitubusename.github.io/project_name/main.html}. 
 \section{Links}
