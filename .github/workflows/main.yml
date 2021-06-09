@@ -13,8 +13,10 @@ jobs:
       env:
         command: 'make4ht -c config.cfg -ua debug -d out main.tex "fn-in"'
     - name: Publish the web pages
-      uses: peaceiris/actions-gh-pages@v2.5.0
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./out
+      uses:  peaceiris/actions-gh-pages@v3
+      with:
+        # ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        # PUBLISH_BRANCH: gh-pages
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./out
+
