@@ -17,6 +17,6 @@ jobs:
       with:
         # ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         # PUBLISH_BRANCH: gh-pages
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.TOKEN }}
         publish_dir: ./out
 
