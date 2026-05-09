@@ -1,12 +1,12 @@
 <!DOCTYPE html> 
-<html xml:lang='en-US' lang='en-US'> 
+<html lang='en-US' xml:lang='en-US'> 
 <head> <title>Create HTML output using GitHub Actions</title> 
 <meta charset='utf-8' /> 
-<meta name='generator' content='TeX4ht (https://tug.org/tex4ht/)' /> 
-<meta name='viewport' content='width=device-width,initial-scale=1' /> 
-<link type='text/css' href='main.css' rel='stylesheet' /> 
-<meta name='src' content='main.tex' /> 
-</head><body>
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='main.css' rel='stylesheet' type='text/css' /> 
+<meta content='main.tex' name='src' /> 
+</head><body id='yaml'>
    <div class='maketitle'>
                                                                   
 
@@ -15,81 +15,91 @@
 
                                                                   
 
-<h2 class='titleHead'>Create HTML output using GitHub Actions</h2>
-<div class='author'><span class='cmr-12'>Michal Hoftich</span></div><br />
-<div class='date'><span class='cmr-12'>January 2020, updated June 2021</span></div>
+<h1 class='titleHead'>Create HTML output using GitHub Actions</h1>
+ <div class='author'><span class='ecrm-1200'>Michal Hoftich</span></div><br />
+<div class='date'><span class='ecrm-1200'>January 2020, updated June 2021</span></div>
    </div>
-   <h3 class='sectionHead'><span class='titlemark'>1   </span> <a id='x1-10001'></a>Introduction</h3>
-<!-- l. 21 --><p class='noindent'><a href='https://www.overleaf.com/'>Overleaf</a> is popular online LaTeX editor. It can generate PDF files without need to
+   
+   <h3 class='sectionHead' id='introduction'><span class='titlemark'>1   </span> <a id='x1-10001'></a>Introduction</h3>
+<!-- l. 23 --><p class='noindent'><a href='https://www.overleaf.com/'>Overleaf</a> is popular online LaTeX editor. It can generate PDF files without need to
 install a local TeX distribution. Unfortunatelly, it doesn’t support conversion to
 HTML out of the box. To get the HTML version of the document, we must use some
 tricks.
-</p><!-- l. 27 --><p class='indent'>   There are many tools that support the conversion from LaTeX to HTML, each of
+</p><!-- l. 29 --><p class='indent'>   There are many tools that support the conversion from LaTeX to HTML, each of
 them use a different approach. I am a developer of <a href='https://tug.org/tex4ht/'>TeX4ht</a>, so I will present solution
 that uses this tool.
-</p><!-- l. 32 --><p class='indent'>   TeX4ht uses TeX for the actual conversion. It loads special configuration files for
+</p><!-- l. 34 --><p class='indent'>   TeX4ht uses TeX for the actual conversion. It loads special configuration files for
 internal LaTeX code or for the used packages. These configuration files patch
 commands with special instructions that insert HTML (or other supported formats).
 Because it uses TeX for the actual conversion, it supports custom commands. It also
 supports font changing commands, so it doesn’t need custom configurations in many
 cases.
-</p><!-- l. 39 --><p class='indent'>   The first method that use TeX4ht for the conversion was presented by LianTze
+</p><!-- l. 41 --><p class='indent'>   The first method that use TeX4ht for the conversion was presented by LianTze
 Lim. It uses a custom build file for <a href='https://www.overleaf.com/latex/examples/testing-html-export-with-tex4ht/rqcknjvwyyry'>Latexmk</a> that calls TeX4ht. The downside is that
 the generated HTML file is not easilly accessible.
-</p><!-- l. 44 --><p class='indent'>   To make the conversion easier, I’ve set up <a href='https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general'>Docker image</a> for TeX4ht. Thanks to
+</p><!-- l. 46 --><p class='indent'>   To make the conversion easier, I’ve set up <a href='https://hub.docker.com/repository/docker/michalh21/make4ht-docker/general'>Docker image</a> for TeX4ht. Thanks to
 <a href='https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-github-actions'>GitHub Actions</a>, it is possible to use this image for the conversion of the Overleaf
 document to HTML. The generated files can be published on the web using Github
 Pages, where they can be automatically updated on every document change. This
 document is an example of this setup.
-</p><!-- l. 50 --><p class='noindent'>
+   
 </p>
+   <h3 class='sectionHead' id='setup'><span class='titlemark'>2   </span> <a id='x1-20002'></a>Setup</h3>
+   
                                                                   
 
                                                                   
-   <h3 class='sectionHead'><span class='titlemark'>2   </span> <a id='x1-20002'></a>Setup</h3>
-<!-- l. 52 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead'><span class='titlemark'>2.1   </span> <a id='x1-30002.1'></a>On Overleaf</h4>
-<!-- l. 54 --><p class='noindent'>First step is to sync your Overleaf project with your GitHub account, following <a href='https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket%3F'>a
-guide on Overleaf</a>. Don’t forget to run the <span class='cmtt-10'>Sync -&gt; GitHub </span>command from Overleaf
+   <h4 class='subsectionHead' id='on-overleaf'><span class='titlemark'>2.1   </span> <a id='x1-30002.1'></a>On Overleaf</h4>
+<!-- l. 56 --><p class='noindent'>First step is to sync your Overleaf project with your GitHub account, following <a href='https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket\%3F'>a
+guide on Overleaf</a>. Don’t forget to run the <span class='ectt-1000'>Sync -&gt; GitHub </span>command from Overleaf
 main menu every time you had updated the document.
-</p><!-- l. 59 --><p class='noindent'>
+   
 </p>
-   <h4 class='subsectionHead'><span class='titlemark'>2.2   </span> <a id='x1-40002.2'></a>On GitHub</h4>
-<!-- l. 60 --><p class='noindent'>Next step is to configure actions in the Github project created for your document.
+   <h4 class='subsectionHead' id='on-github'><span class='titlemark'>2.2   </span> <a id='x1-40002.2'></a>On GitHub</h4>
+<!-- l. 62 --><p class='noindent'>Next step is to configure actions in the Github project created for your document.
 Two steps are necessary – first one compiles the document to HTML using TeX4ht,
 the second step publishes the generated HTML files on the Web using <a href='https://pages.github.com/'>GitHub
 Pages</a>
-</p><!-- l. 65 --><p class='indent'>   For the web publishing we use the <span class='obeylines-h'><span class='verb'><span class='cmtt-10'>actions-gh-pages</span></span></span> <a href='https://github.com/peaceiris/actions-gh-pages'>action</a>.
-</p><!-- l. 68 --><p class='indent'>   When the keys are set up, you can create the workflow file. Select the <span class='cmtt-10'>Actions</span>
-tab and click the <span class='cmtt-10'>Set up a workflow yourself </span>button. It will open an editor
+</p><!-- l. 67 --><p class='indent'>   For the web publishing we use the <span class='obeylines-h'><code class='verb'>actions-gh-pages</code></span> <a href='https://github.com/peaceiris/actions-gh-pages'>action</a>.
+</p><!-- l. 70 --><p class='indent'>   When the keys are set up, you can create the workflow file. Select the <span class='ectt-1000'>Actions</span>
+tab and click the <span class='ectt-1000'>Set up a workflow yourself </span>button. It will open an editor
 with a YAML file for the Action workflow. Replace it with the following
 content:
 </p>
-   <!-- l. 76 -->
-<p><a id='x1-4001'></a></p>
-   <div id='listing-1' class='lstlisting'><span class='label'><a id='x1-4002r1'></a></span><span class='cmtt-10'>name: CI </span><br /><span class='label'><a id='x1-4003r2'></a></span><span class='cmtt-10'>on: [push] </span><br /><span class='label'><a id='x1-4004r3'></a></span><span class='cmtt-10'>jobs: </span><br /><span class='label'><a id='x1-4005r4'></a></span><span class='cmtt-10'>  build: </span><br /><span class='label'><a id='x1-4006r5'></a></span><span class='cmtt-10'>   runs-on: ubuntu-latest </span><br /><span class='label'><a id='x1-4007r6'></a></span><span class='cmtt-10'>   steps: </span><br /><span class='label'><a id='x1-4008r7'></a></span><span class='cmtt-10'>   - uses: actions/checkout@v1 </span><br /><span class='label'><a id='x1-4009r8'></a></span><span class='cmtt-10'>   - name: Run make4ht </span><br /><span class='label'><a id='x1-4010r9'></a></span><span class='cmtt-10'>     uses: docker://ghcr.io/michal-h21/make4ht-action:latest </span><br /><span class='label'><a id='x1-4011r10'></a></span><span class='cmtt-10'>     env: </span><br /><span class='label'><a id='x1-4012r11'></a></span><span class='cmtt-10'>       command: "make4ht -u -d out main.tex" </span><br /><span class='label'><a id='x1-4013r12'></a></span><span class='cmtt-10'>   - name: Publish the web pages </span><br /><span class='label'><a id='x1-4014r13'></a></span><span class='cmtt-10'>     uses:  peaceiris/actions-gh-pages@v3 </span><br /><span class='label'><a id='x1-4015r14'></a></span><span class='cmtt-10'>     with: </span><br /><span class='label'><a id='x1-4016r15'></a></span><span class='cmtt-10'>       github_token: </span><span class='tctt-1000'>$</span><span class='cmtt-10'>{{ secrets.GITHUB_TOKEN }} </span><br /><span class='label'><a id='x1-4017r16'></a></span><span class='cmtt-10'>       publish_dir: ./out</span>
+   <!-- l. 78 -->
+   <pre class='lstlisting' id='listing-1'><span class='label'><a id='x1-4001r1'></a></span><span style='color:#000000'><span class='ectt-1000'>name</span></span><span style='color:#000000'><span class='ectt-1000'>:</span></span><span style='color:#000000'> <span class='ectt-1000'>CI</span> 
+</span><span class='label'><a id='x1-4002r2'></a></span><span style='color:#000000'><span class='ectt-1000'>on</span></span><span style='color:#000000'><span class='ectt-1000'>:</span></span><span style='color:#000000'> <span class='ectt-1000'>[push]</span> 
+</span><span class='label'><a id='x1-4003r3'></a></span><span style='color:#000000'><span class='ectt-1000'>jobs</span></span><span style='color:#000000'><span class='ectt-1000'>:</span></span> 
+<span class='label'><a id='x1-4004r4'></a></span><span class='ectt-1000'>  </span><span style='color:#000000'><span class='ectt-1000'>build</span></span><span style='color:#000000'><span class='ectt-1000'>:</span></span> 
+<span class='label'><a id='x1-4005r5'></a></span><span class='ectt-1000'>   </span><span style='color:#000000'><span class='ectt-1000'>runs</span></span><span style='color:#000000'><span class='ectt-1000'>-</span></span><span style='color:#000000'><span class='ectt-1000'>on</span></span><span style='color:#000000'><span class='ectt-1000'>:</span></span><span style='color:#000000'> <span class='ectt-1000'>ubuntu-latest</span> 
+</span><span class='label'><a id='x1-4006r6'></a></span><span class='ectt-1000'>   </span><span style='color:#000000'><span class='ectt-1000'>steps</span></span><span style='color:#000000'><span class='ectt-1000'>:</span></span> 
+<span class='label'><a id='x1-4007r7'></a></span><span class='ectt-1000'>   </span><span style='color:#000000'><span class='ectt-1000'>-</span></span><span style='color:#000000'> <span class='ectt-1000'>uses: actions/checkout@v1</span> 
+</span><span class='label'><a id='x1-4008r8'></a></span><span class='ectt-1000'>   </span><span style='color:#000000'><span class='ectt-1000'>-</span></span><span style='color:#000000'> <span class='ectt-1000'>name: Run make4ht</span> 
+</span><span class='label'><a id='x1-4009r9'></a></span><span class='ectt-1000'>     </span><span style='color:#000000'><span class='ectt-1000'>uses</span></span><span style='color:#000000'><span class='ectt-1000'>:</span></span><span style='color:#000000'> <span class='ectt-1000'>docker://ghcr.io/michal-h21/make4ht-action:latest</span> 
+</span><span class='label'><a id='x1-4010r10'></a></span><span class='ectt-1000'>     </span><span style='color:#000000'><span class='ectt-1000'>env</span></span><span style='color:#000000'><span class='ectt-1000'>:</span></span> 
+<span class='label'><a id='x1-4011r11'></a></span><span class='ectt-1000'>       </span><span style='color:#000000'><span class='ectt-1000'>command</span></span><span style='color:#000000'><span class='ectt-1000'>:</span></span><span style='color:#000000'> <span class='ectt-1000'>"make4ht -u -d out main.tex"</span> 
+</span><span class='label'><a id='x1-4012r12'></a></span><span class='ectt-1000'>   </span><span style='color:#000000'><span class='ectt-1000'>-</span></span><span style='color:#000000'> <span class='ectt-1000'>name: Publish the web pages</span> 
+</span><span class='label'><a id='x1-4013r13'></a></span><span class='ectt-1000'>     </span><span style='color:#000000'><span class='ectt-1000'>uses</span></span><span style='color:#000000'><span class='ectt-1000'>:</span></span><span style='color:#000000'> </span><span class='ectt-1000'> </span><span style='color:#000000'><span class='ectt-1000'>peaceiris</span></span><span style='color:#000000'><span class='ectt-1000'>/</span></span><span style='color:#000000'><span class='ectt-1000'>actions</span></span><span style='color:#000000'><span class='ectt-1000'>-</span></span><span style='color:#000000'><span class='ectt-1000'>gh</span></span><span style='color:#000000'><span class='ectt-1000'>-</span></span><span style='color:#000000'><span class='ectt-1000'>pages@v3</span></span> 
+<span class='label'><a id='x1-4014r14'></a></span><span class='ectt-1000'>     </span><span style='color:#000000'><span class='ectt-1000'>with</span></span><span style='color:#000000'><span class='ectt-1000'>:</span></span> 
+<span class='label'><a id='x1-4015r15'></a></span><span class='ectt-1000'>       </span><span style='color:#000000'><span class='ectt-1000'>github_token</span></span><span style='color:#000000'><span class='ectt-1000'>:</span></span><span style='color:#000000'> <span class='ectt-1000'>${{ secrets.GITHUB_TOKEN }}</span> 
+</span><span class='label'><a id='x1-4016r16'></a></span><span class='ectt-1000'>       </span><span style='color:#000000'><span class='ectt-1000'>publish_dir</span></span><span style='color:#000000'><span class='ectt-1000'>:</span></span><span style='color:#000000'> <span class='ectt-1000'>./out</span></span></pre>
    
-   </div>
-<!-- l. 95 --><p class='indent'>   The important part of the configuration is the <span class='cmtt-10'>command </span>key. It contains the
+<!-- l. 97 --><p class='indent'>   The important part of the configuration is the <span class='ectt-1000'>command </span>key. It contains the
 actual command used for the compilation. We use <a href='https://ctan.org/pkg/make4ht?lang=en'>Make4ht</a>, build system for
 TeX4ht.
-</p><!-- l. 100 --><p class='indent'>   Command <span class='obeylines-h'><span class='verb'><span class='cmtt-10'>"make4ht -u -d out main.tex"</span></span></span> creates UTF-8 encoded HTML file
-from the <span class='cmtt-10'>main.tex </span>input file. The <span class='cmtt-10'>-d </span>option specifies the output directory for the
+</p><!-- l. 102 --><p class='indent'>   Command <span class='obeylines-h'><code class='verb'>"make4ht -u -d out main.tex"</code></span> creates UTF-8 encoded HTML file
+from the <span class='ectt-1000'>main.tex </span>input file. The <span class='ectt-1000'>-d </span>option specifies the output directory for the
 HTML files. This directory will be used for the web publishing and should be passed
-to the <span class='obeylines-h'><span class='verb'><span class='cmtt-10'>publish_dir</span></span></span> key in <span class='cmti-10'>Publish the web pages </span>step.
-</p><!-- l. 106 --><p class='indent'>   The web will be published at <a class='url' href='https://yourgitubusename.github.io/project_name/main.html'><span class='cmtt-10'>https://yourgitubusename.github.io/project_name/main.html</span></a>.
+to the <span class='obeylines-h'><code class='verb'>publish_dir</code></span> key in <span class='ecti-1000'>Publish the web pages </span>step.
+</p><!-- l. 108 --><p class='indent'>   The web will be published at <a class='url' href='https://yourgitubusename.github.io/project_name/main.html'><span class='ectt-1000'>https://yourgitubusename.github.io/project_name/main.html</span></a>.
 </p>
-   <h3 class='sectionHead'><span class='titlemark'>3   </span> <a id='x1-50003'></a>Links</h3>
-                                                                  
-
-                                                                  
+   <h3 class='sectionHead' id='links'><span class='titlemark'>3   </span> <a id='x1-50003'></a>Links</h3>
      <ul class='itemize1'>
-     <li class='itemize'>This                                                                            document:
-     <a class='url' href='https://www.kodymirus.cz/overleaf-html-sample/main.html'><span class='cmtt-10'>https://www.kodymirus.cz/overleaf-html-sample/main.html</span></a>
+     <li class='itemize'>This                                      document:                                      
+<a class='url' href='https://www.kodymirus.cz/overleaf-html-sample/main.html'><span class='ectt-1000'>https://www.kodymirus.cz/overleaf-html-sample/main.html</span></a>
      </li>
-     <li class='itemize'>Source                                                                         repository:
-     <a class='url' href='https://github.com/michal-h21/overleaf-html-sample'><span class='cmtt-10'>https://github.com/michal-h21/overleaf-html-sample</span></a></li></ul>
+     <li class='itemize'>Source                                     repository:                                     
+<a class='url' href='https://github.com/michal-h21/overleaf-html-sample'><span class='ectt-1000'>https://github.com/michal-h21/overleaf-html-sample</span></a></li></ul>
     
 </body> 
 </html>
